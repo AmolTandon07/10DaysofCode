@@ -2,7 +2,7 @@ class Solution {
 public:
     int findShortestSubArray(vector<int>& nums) {
        int freq[50000]={0};
-       int i,maxi,firstIndex,lastIndex=0,len;
+       int i,maxi,firstIndex,lastIndex=-1,len;
        vector<int>ans;
        int mini=INT_MAX;
        if(nums.size()==1)
@@ -26,6 +26,7 @@ public:
        for(j=0;j<ans.size();j++)
        {
            int count=0;
+           lastIndex=-1;
        for(i=0;i<nums.size();i++)
        {
            if(nums[i]==ans[j])
@@ -41,6 +42,8 @@ public:
                }
            }
        }
+       if(lastIndex==-1)
+       lastIndex=firstIndex;
        len=lastIndex-firstIndex+1;
        mini=min(mini,len);
        }
